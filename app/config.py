@@ -2,10 +2,14 @@ import sys
 import os
 from dotenv import load_dotenv
 import logging
+from pathlib import Path
+
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
 
 def load_configurations(app):
-    load_dotenv()
+    dotenv_path = Path(os.path.join(BASE_DIR, "../start/.env"))
+    load_dotenv(dotenv_path=dotenv_path)
     app.config["ACCESS_TOKEN"] = os.getenv("ACCESS_TOKEN")
     app.config["YOUR_PHONE_NUMBER"] = os.getenv("YOUR_PHONE_NUMBER")
     app.config["APP_ID"] = os.getenv("APP_ID")
